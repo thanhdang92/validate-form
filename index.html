@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./syle.css">
+</head>
+<body>
+     
+        
+    <div class="main">
+        <form action="" method="post" class="form" id="form-1">
+            <div class="form-group">
+                <label for="firstname" class="form-label">First Name</label>
+                <input id="firstname" name="firstname" type="text">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="lastname" class="form-label">Last Name </label>
+                <input id="lastname" name="lastname" type="text">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="age" class="form-label">Age </label>
+                <input id="age" name="age" type="number">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="website" class="form-label">Website</label>
+                <input id="website" name="website" type="text">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">PassWord</label>
+                <input id="password" name="password" type="password">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="website" class="form-label">Confirmation PassWord</label>
+                <input id="password_confirmation" name="password_confirmation" type="password">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" id="submit">
+            </div>
+        </form>
+    </div>
+        
+        <script src="./main.js"></script>
+       <script>
+        Validator({
+            form: "#form-1",
+            errorSelector: ".form-message" ,
+            rules : [
+                Validator.isRequired('#firstname', 'FirstName is a required field'),
+                Validator.isRequired('#lastname', 'LastName is a required field'),
+                Validator.isRequired('#email', 'Email is a required field'),
+                Validator.isEmail('#email', 'Please enter the correct email type'),
+                Validator.isAge('#age', 'Age is a required field'),
+                Validator.isRequired('#website', 'Website is a required field'),
+                Validator.isWebsite('#website', 'Please enter the correct Website type'),
+                Validator.isRequired('#password', 'Password is a required field'),
+                Validator.isPassword('#password','Please enter a password with at least 6 characters', 6),
+                Validator.isRequired('#password_confirmation', 'Password is a required field'),
+                Validator.isConfirmationPassword('#password_confirmation','Re-enter password does not match', 
+                    function () {
+                        return document.querySelector('#form-1 #password').value; 
+                    }),
+                
+            ]
+        });
+
+       </script>
+</body>
+</html>
